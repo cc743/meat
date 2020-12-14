@@ -26,7 +26,7 @@
       <p id="result"></p>
       <a id="authURL" href target="_blank">Click to Authorize</a>
 
-       <!-- STEP 2 -- MAKE SURE STEP 1 WORKS BEFORE MOVING ON-->
+       <!--STEP 2 -- MAKE SURE STEP 1 WORKS BEFORE MOVING ON-->
       <h4>Step 2: Get your code and exchange for an access token</h4>
       <p>
         After you're redirected back to your Meet app on Github, copy the code from the URI
@@ -46,7 +46,7 @@
       const resultLink = document.getElementById("authURL");
       const getAuthURL = "https://6vwfp84687.execute-api.us-east-2.amazonaws.com/dev/api/get-auth-url";
 
-      getCodeElement.onClick = function () {
+      getCodeElement.onclick = function () {
         fetch(getAuthURL)
           .then(function (response) {
             return response.json();
@@ -67,16 +67,18 @@
       const accessTokenElement = document.getElementById("accessToken");
       const getToken = "https://6vwfp84687.execute-api.us-east-2.amazonaws.com/dev/api/token";  //must be without /{code}
 
-      getAccessToken.onClick = function () {
+      getAccessToken.onclick = function () {
         let code = codeValue.value;
+        console.log(code);
 
         if (decodeURIComponent(code) === code) {
-          code = encodeURIComponent(codeValue.value)
+          code = encodeURIComponent(codeValue.value);
         }
         const getTokenRequest = getToken + "/" + code;
+        console.log(getTokenRequest);
         fetch(getTokenRequest)
           .then(function (response) {
-            return response.json()
+            return response.json();
           })
           .then(function (json) {
             accessTokenElement.innerText = JSON.stringify(json);
