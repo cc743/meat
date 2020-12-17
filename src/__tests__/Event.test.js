@@ -49,7 +49,7 @@ describe ('<Event /> Component', () => {
   });
 
   test('render the Event component', () => {
-    expect(EventWrapper).toHaveLength(1);
+    expect(EventWrapper).toHaveLength(1); 
   });
 
   test('render the event div/element', () => {
