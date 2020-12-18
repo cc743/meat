@@ -11,14 +11,16 @@ class App extends Component {
 
   state = {
     events: [],
-    locations: []
+    locations: [],
+    currentLocation: "all",
+    numberOfEvents: 32
   }
 
   componentDidMount() {
     this.mounted = true;
     getEvents().then((events) => {
       if (this.mounted) {
-        this.setState({ events, locations: extractLocations(events) });
+        this.setState({ events: events, locations: extractLocations(events) });
       }
     });
   }
@@ -28,14 +30,31 @@ class App extends Component {
   }
 
   updateEvents = (location, eventCount) => {
-    getEvents().then((events) => {
-      const locationEvents = (location === 'all') ?
-        events : 
-        events.filter((event) => event.location === location);
-      this.setState({
-        events: locationEvents
+    const {currentLocation, numberOfEvents} = this.state;
+    if (location) {
+      getEvents().then((events) => {
+        const locationEvents = (location === 'all') ?
+          events : 
+          events.filter((event) => event.location === location);
+        const filteredEvents = locationEvents.slice(0, numberOfEvents); //default case?
+        this.setState({
+          events: filteredEvents,
+          currentLocation: location
+        });
       });
-    });
+    } else {
+      getEvents().then((events) => {
+        const locationEvents = (currentLocation === 'all') ?
+          events : 
+          events.filter((event) => event.location === currentLocation);
+        const filteredEvents = locationEvents.slice(0, eventCount); //user-inputted case?
+        this.setState({
+          events: filteredEvents,
+          numberOfEvents: eventCount
+        });
+      });
+    }
+    
   }
 
   render () {
@@ -43,7 +62,7 @@ class App extends Component {
       <div className="App">
         <CitySearch locations={this.state.locations} updateEvents={this.updateEvents}/>
         <EventList events={this.state.events}/>
-        <NumberOfEvents /> 
+        <NumberOfEvents numberOfEvents={this.state.numberOfEvents} updateEvents={this.updateEvents}/> 
       </div>
     );
   }
