@@ -89,7 +89,7 @@ describe('<App /> Integration', () => {
       target: {value: 1},
     });
     expect(AppWrapper.instance().updateEvents).toHaveBeenCalledTimes(1);
-    expect(AppWrapper.instance().updateEvents).toHaveBeenCalledWith(null, 1);  //code is from source code
+    expect(AppWrapper.instance().updateEvents).toHaveBeenCalledWith(null, 1);  //code is from the App source code - provided in Resources
     AppWrapper.unmount();
   });
 
