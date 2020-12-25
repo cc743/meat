@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/meat/static/css/main.c545326b.chunk.css",
-    "main.js": "/meat/static/js/main.a5ecaba9.chunk.js",
-    "main.js.map": "/meat/static/js/main.a5ecaba9.chunk.js.map",
+    "main.js": "/meat/static/js/main.30bb5ec4.chunk.js",
+    "main.js.map": "/meat/static/js/main.30bb5ec4.chunk.js.map",
     "runtime-main.js": "/meat/static/js/runtime-main.be453e2a.js",
     "runtime-main.js.map": "/meat/static/js/runtime-main.be453e2a.js.map",
     "static/js/2.c24ba1c2.chunk.js": "/meat/static/js/2.c24ba1c2.chunk.js",
@@ -10,6 +10,8 @@
     "static/js/3.fc45445f.chunk.js": "/meat/static/js/3.fc45445f.chunk.js",
     "static/js/3.fc45445f.chunk.js.map": "/meat/static/js/3.fc45445f.chunk.js.map",
     "index.html": "/meat/index.html",
+    "service-worker.js": "/meat/service-worker.js",
+    "service-worker.js.map": "/meat/service-worker.js.map",
     "static/css/main.c545326b.chunk.css.map": "/meat/static/css/main.c545326b.chunk.css.map",
     "static/js/2.c24ba1c2.chunk.js.LICENSE.txt": "/meat/static/js/2.c24ba1c2.chunk.js.LICENSE.txt"
   },
@@ -17,6 +19,6 @@
     "static/js/runtime-main.be453e2a.js",
     "static/js/2.c24ba1c2.chunk.js",
     "static/css/main.c545326b.chunk.css",
-    "static/js/main.a5ecaba9.chunk.js"
+    "static/js/main.30bb5ec4.chunk.js"
   ]
 }
