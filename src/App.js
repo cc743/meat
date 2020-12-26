@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import './App.css';
 import EventList from './EventList';
 import CitySearch from './CitySearch';
-// import Event from './Event';  //note: removal of <Event /> from div below
 import NumberOfEvents from './NumberOfEvents';
 import { getEvents, extractLocations } from './api';
 import './nprogress.css'; 
