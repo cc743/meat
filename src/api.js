@@ -1,5 +1,4 @@
 import axios from 'axios';
-import nProgress from 'nprogress';
 import NProgress from 'nprogress';
 import { mockData } from './mock-data';
 
@@ -56,9 +55,9 @@ export const getEvents = async () => {
     return mockData;
   }
 
-  if (!navigator.onLine) {
+  if (!navigator.onLine && !window.location.href.startsWith('http://localhost')) {
     const events = localStorage.getItem("lastEvents");
-    nProgress.done()
+    NProgress.done()
     return { events: JSON.parse(events).events, locations: extractLocations(JSON.parse(events).events) };
   }
 
@@ -69,7 +68,7 @@ export const getEvents = async () => {
     const url = `https://6vwfp84687.execute-api.us-east-2.amazonaws.com/dev/api/get-events/${token}`;
     const result = await axios.get(url);
     if (result.data) {
-      var locations = extractLocations(result.data.events);
+      let locations = extractLocations(result.data.events);
       localStorage.setItem("lastEvents", JSON.stringify(result.data));
       localStorage.setItem("locations", JSON.stringify(locations));
     }
