@@ -4,6 +4,7 @@ import EventList from './EventList';
 import CitySearch from './CitySearch';
 import NumberOfEvents from './NumberOfEvents';
 import { getEvents, extractLocations } from './api';
+import { WarningAlert } from './Alert';
 import './nprogress.css'; 
 
 class App extends Component {
@@ -12,7 +13,8 @@ class App extends Component {
     events: [],
     locations: [],
     currentLocation: "all",
-    numberOfEvents: 32
+    numberOfEvents: 32,
+    infoText: ''
   }
 
   componentDidMount() {
@@ -29,6 +31,16 @@ class App extends Component {
   }
 
   updateEvents = (location, eventCount) => {
+    if (!navigator.onLine) {
+      this.setState({
+        infoText: 'The displayed list has been loaded from the cache, may not be up to date'
+      });
+    } else {
+      this.setState({
+        infoText: ''
+      });
+    }
+
     const {currentLocation, numberOfEvents} = this.state;
     if (location) {
       getEvents().then((events) => {
@@ -59,6 +71,7 @@ class App extends Component {
   render () {
     return (
       <div className="App">
+        <WarningAlert text={this.state.infoText}/>
         <CitySearch locations={this.state.locations} updateEvents={this.updateEvents}/>
         <EventList events={this.state.events}/>
         <NumberOfEvents numberOfEvents={this.state.numberOfEvents} updateEvents={this.updateEvents}/> 
